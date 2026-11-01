@@ -1,51 +1,68 @@
-# Developer Workstation Bootstrap
+# Workstation Bootstrap
 
-A practical, reproducible setup for an **Apple Silicon macOS** development workstation with two GitHub identities (**personal** and **work**), isolated Git/SSH/GitHub CLI configuration, modern JavaScript and Python tooling, and AI coding assistants.
+A practical, reproducible **Apple Silicon macOS** setup guide covering separate personal and work GitHub identities, modern development tooling, and AI coding assistants.
 
-No organisation-specific names, real usernames, hostnames, emails, or credentials are included.
+**[Read the documentation website](https://gitsoup.github.io/workstation-bootstrap/)** · [Start setup](https://gitsoup.github.io/workstation-bootstrap/01-prerequisites/) · [Security model](https://gitsoup.github.io/workstation-bootstrap/07-security-and-recovery/)
 
-> **Security model:** Directory-based routing is a convenience and error-reduction mechanism, **not** a security boundary. Git's `includeIf` selects commit identity, SSH host aliases select keys, and a `gh` wrapper selects CLI authentication. Agents and users can bypass these mechanisms with different commands, working directories, explicit overrides, or HTTPS remotes. Review destinations before publishing or pushing.
+## What this covers
 
-## Start here
+- **Foundation:** macOS, Xcode Command Line Tools, Homebrew, and a terminal.
+- **Identity routing:** Git `includeIf`, independent SSH keys and host aliases, and separate GitHub CLI authentication directories.
+- **Development runtimes:** mise, Node.js LTS, uv, managed Python, and terminal utilities.
+- **AI coding tools:** Claude Code and Codex, with project-level instructions when useful.
+- **Verification and recovery:** read-only checks, limitations, and migration guidance.
 
-1. [Prerequisites and setup order](docs/01-prerequisites.md)
-2. [Git identities and SSH keys](docs/02-git-and-ssh.md)
-3. [GitHub CLI account routing](docs/03-github-cli.md)
-4. [Development runtimes and utilities](docs/04-tooling.md)
-5. [Claude Code and Codex](docs/05-ai-agents.md)
-6. [Verification and troubleshooting](docs/06-verification.md)
-7. [Security and recovery](docs/07-security-and-recovery.md)
-
-## Design
+## Repository layout
 
 ```text
-~/repos/
-├── personal/    # Git commit identity A, SSH alias github-personal, gh config A
-└── work/        # Git commit identity B, SSH alias github-work, gh config B
+mkdocs.yml                    Site configuration and navigation
+docs/                         Published Markdown guides
+  index.md                    Documentation landing page
+  assets/                     Theme styles and icons
+examples/                     Generic Git, SSH, and CLI templates
+scripts/                      Read-only verification scripts
+.github/workflows/pages.yml   GitHub Pages deployment
+requirements-docs.txt         Documentation build dependencies
 ```
 
-The setup uses:
+## Local preview
 
-- Homebrew for packages; mise for Node.js LTS; uv for managed Python.
-- Git `includeIf` for per-workspace commit metadata, with `user.useConfigOnly=true`.
-- Dedicated SSH keys and host aliases for each GitHub account.
-- Separate `GH_CONFIG_DIR` directories, selected by a small `gh` wrapper.
-- Claude Code native installation and Codex CLI installation.
-- Project-local `AGENTS.md` / `CLAUDE.md` only when a project needs instructions.
-
-## Quick checks
+Requires Python 3.10+ and pip (preferably in a virtual environment):
 
 ```bash
-bash scripts/check-tools.sh
-bash scripts/check-workspaces.sh
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-docs.txt
+mkdocs serve
 ```
 
-Both scripts are read-only. They print configuration details but never credentials.
+Visit `http://127.0.0.1:8000/`. Build strictly with `mkdocs build --strict`.
 
-## Reuse and publishing
+## Publishing
 
-Clone this repository, read the guides, then copy and adapt the files in `examples/`. Do not run templates unchanged: replace placeholders first. The repository includes a GitHub Pages workflow for publishing Markdown through Jekyll once Pages is enabled in repository settings. You can keep the repository private and use the Markdown directly instead.
+Set **Settings → Pages → Build and deployment → Source: GitHub Actions**. Push to `main`; the workflow builds the site with Zensical and deploys it to GitHub Pages. You can also run the workflow manually from the Actions tab.
+
+## Security
+
+Directory-based routing is **not a security boundary**. Git, SSH, and GitHub CLI configuration reduce mistakes but can be bypassed by explicit overrides, working-directory changes, or alternate remotes. Never commit credentials, private SSH keys, or authenticated CLI configuration.
 
 ## Scope
 
-This is a **setup reference**, not a fully automated bootstrap installer. Account authentication and SSH public-key registration are deliberately manual. Version numbers are not pinned: verify current supported versions and official installation instructions before running commands.
+This repository is documentation and examples, not an unattended installer. Review all commands and substitute your own account names and email addresses before applying configuration. No real personal or employer identifiers are required by the setup instructions.
+
+Licensed under MIT; see [LICENSE](LICENSE).
+
+## Documentation website
+
+The site uses [Zensical](https://zensical.org/) and is deployed to GitHub Pages using `.github/workflows/pages.yml`.
+
+Preview locally (requires Python and pip):
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install zensical
+zensical serve
+```
+
+The GitHub Pages repository setting must remain **Source: GitHub Actions**.

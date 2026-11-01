@@ -1,9 +1,0 @@
-# Merge with existing ~/.gitconfig rather than blindly overwriting it.
-[includeIf "gitdir:~/repos/personal/"]
-    path = ~/.gitconfig-personal
-[includeIf "gitdir:~/repos/work/"]
-    path = ~/.gitconfig-work
-[user]
-    useConfigOnly = true
-[init]
-    defaultBranch = main
