@@ -1,0 +1,6 @@
+[user]
+    name = WORK_LOGIN
+    email = WORK_GITHUB_NOREPLY_EMAIL
+# Optional for established repos; initial clone should use explicit SSH alias.
+# [url "git@github-work:"]
+#     insteadOf = git@github.com:

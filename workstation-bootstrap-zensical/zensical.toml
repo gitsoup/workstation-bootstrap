@@ -1,0 +1,53 @@
+[project]
+site_name = "Workstation Bootstrap"
+site_description = "A practical guide to reproducible Apple Silicon development environments with separate GitHub identities."
+site_url = "https://gitsoup.github.io/workstation-bootstrap/"
+repo_url = "https://github.com/gitsoup/workstation-bootstrap"
+repo_name = "workstation-bootstrap"
+edit_uri = "edit/main/docs/"
+docs_dir = "docs"
+site_dir = "site"
+copyright = "Documentation licensed under MIT."
+extra_css = ["assets/stylesheets/extra.css"]
+nav = [
+  { "Home" = "index.md" },
+  { "Get started" = [
+    { "Overview and prerequisites" = "01-prerequisites.md" },
+    { "Git and SSH identities" = "02-git-and-ssh.md" },
+    { "GitHub CLI routing" = "03-github-cli.md" },
+  ] },
+  { "Development environment" = [
+    { "Runtimes and utilities" = "04-tooling.md" },
+    { "AI coding agents" = "05-ai-agents.md" },
+  ] },
+  { "Maintain and recover" = [
+    { "Verification" = "06-verification.md" },
+    { "Security and recovery" = "07-security-and-recovery.md" },
+  ] },
+]
+
+[project.theme]
+language = "en"
+logo = "assets/logo.svg"
+favicon = "assets/favicon.svg"
+features = [
+  "navigation.instant", "navigation.tracking", "navigation.sections",
+  "navigation.top", "search.suggest", "search.highlight",
+  "content.code.copy", "content.action.edit", "toc.follow",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
