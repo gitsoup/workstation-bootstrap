@@ -1,0 +1,7 @@
+title: Developer Workstation Bootstrap
+description: Reproducible Apple Silicon macOS setup with isolated GitHub identities
+theme: minima
+markdown: kramdown
+exclude:
+  - scripts
+  - LICENSE

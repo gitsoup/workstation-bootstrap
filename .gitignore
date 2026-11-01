@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_ed25519*
+**/hosts.yml
+**/credentials*
+**/token*
+node_modules/
+.venv/
+__pycache__/
